@@ -100,4 +100,4 @@ This project demonstrates:
 - Data Storytelling
 
 ## Author
-Lahu Jare
+Suresh Vakil Pawar
