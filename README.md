@@ -80,7 +80,7 @@ Key Columns:
 - Checkout optimization can significantly improve conversions.
 
 ## Dashboard Preview
-![RetailRocket Dashboard](dashboard.png)
+(dashboard_Screenshot.png)
 
 ## Repository Structure
 
