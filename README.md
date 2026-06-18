@@ -30,11 +30,12 @@ View Product  →  Add to Cart  →  Purchase
 
 ## 📊 Dashboard File
 
-> ⚠️ The Power BI dashboard file (.pbix) exceeds GitHub's 100MB file size limit.
+> ⚠️ The Power BI dashboard file (.pbix) is 104MB and exceeds GitHub's 100MB file size limit.
 >
-> **👉 Download Dashboard Here:** [RetailRocket_Dashboard.pbix — Google Drive](YOUR_GOOGLE_DRIVE_LINK_HERE)
+> **👉 Download Dashboard Here (Google Drive):**
+> [RetailRocket_Dashboard.pbix](https://drive.google.com/file/d/1MQ5THmPKS5Q_uY2_cF_0sqj3XFXkC2FG/view?usp=sharing)
 >
-> *Upload your .pbix to Google Drive → right-click → Share → Anyone with the link → copy and paste link above*
+> *Click the link above → Google Drive opens → click Download button (top right)*
 
 ---
 
@@ -157,144 +158,109 @@ FROM events;
 
 /* 3. VIEW USERS */
 SELECT COUNT(DISTINCT visitorid) AS view_users
-FROM events
-WHERE event = 'view';
+FROM events WHERE event = 'view';
 
 /* 4. CART USERS */
 SELECT COUNT(DISTINCT visitorid) AS cart_users
-FROM events
-WHERE event = 'addtocart';
+FROM events WHERE event = 'addtocart';
 
 /* 5. TRANSACTION USERS */
 SELECT COUNT(DISTINCT visitorid) AS transaction_users
-FROM events
-WHERE event = 'transaction';
+FROM events WHERE event = 'transaction';
 
 /* 6. VIEW TO CART CONVERSION RATE */
-SELECT
-    ROUND(
-        COUNT(DISTINCT CASE WHEN event = 'addtocart'
-            THEN visitorid END) * 100.0 /
-        COUNT(DISTINCT CASE WHEN event = 'view'
-            THEN visitorid END), 2
-    ) AS view_to_cart_pct
+SELECT ROUND(
+    COUNT(DISTINCT CASE WHEN event = 'addtocart'
+        THEN visitorid END) * 100.0 /
+    COUNT(DISTINCT CASE WHEN event = 'view'
+        THEN visitorid END), 2
+) AS view_to_cart_pct
 FROM events;
 
 /* 7. CART TO PURCHASE CONVERSION RATE */
-SELECT
-    ROUND(
-        COUNT(DISTINCT CASE WHEN event = 'transaction'
-            THEN visitorid END) * 100.0 /
-        COUNT(DISTINCT CASE WHEN event = 'addtocart'
-            THEN visitorid END), 2
-    ) AS cart_to_purchase_pct
+SELECT ROUND(
+    COUNT(DISTINCT CASE WHEN event = 'transaction'
+        THEN visitorid END) * 100.0 /
+    COUNT(DISTINCT CASE WHEN event = 'addtocart'
+        THEN visitorid END), 2
+) AS cart_to_purchase_pct
 FROM events;
 
 /* 8. OVERALL CONVERSION RATE */
-SELECT
-    ROUND(
-        COUNT(DISTINCT CASE WHEN event = 'transaction'
-            THEN visitorid END) * 100.0 /
-        COUNT(DISTINCT CASE WHEN event = 'view'
-            THEN visitorid END), 2
-    ) AS overall_conversion_pct
+SELECT ROUND(
+    COUNT(DISTINCT CASE WHEN event = 'transaction'
+        THEN visitorid END) * 100.0 /
+    COUNT(DISTINCT CASE WHEN event = 'view'
+        THEN visitorid END), 2
+) AS overall_conversion_pct
 FROM events;
 
 /* 9. CART ABANDONMENT USERS */
-SELECT visitorid
-FROM events
+SELECT visitorid FROM events
 GROUP BY visitorid
-HAVING
-    SUM(event = 'addtocart') > 0
-    AND SUM(event = 'transaction') = 0;
+HAVING SUM(event = 'addtocart') > 0
+AND SUM(event = 'transaction') = 0;
 
 /* 10. TOP 10 PURCHASED PRODUCTS */
 SELECT itemid, COUNT(*) AS purchase_count
-FROM events
-WHERE event = 'transaction'
+FROM events WHERE event = 'transaction'
 GROUP BY itemid
-ORDER BY purchase_count DESC
-LIMIT 10;
+ORDER BY purchase_count DESC LIMIT 10;
 
 /* 11. MONTHLY VISITOR TREND */
-SELECT
-    MONTH(FROM_UNIXTIME(timestamp/1000)) AS month_no,
+SELECT MONTH(FROM_UNIXTIME(timestamp/1000)) AS month_no,
     COUNT(DISTINCT visitorid) AS visitors
-FROM events
-GROUP BY month_no
-ORDER BY month_no;
+FROM events GROUP BY month_no ORDER BY month_no;
 
 /* 12. USER ACTIVITY BY HOUR */
-SELECT
-    HOUR(FROM_UNIXTIME(timestamp/1000)) AS hour_of_day,
+SELECT HOUR(FROM_UNIXTIME(timestamp/1000)) AS hour_of_day,
     COUNT(*) AS total_events
-FROM events
-GROUP BY hour_of_day
-ORDER BY hour_of_day;
+FROM events GROUP BY hour_of_day ORDER BY hour_of_day;
 
 /* 13. EVENT DISTRIBUTION */
 SELECT event, COUNT(*) AS total_events
-FROM events
-GROUP BY event;
+FROM events GROUP BY event;
 
 /* 14. TOP ACTIVE VISITORS */
 SELECT visitorid, COUNT(*) AS total_events
-FROM events
-GROUP BY visitorid
-ORDER BY total_events DESC
-LIMIT 10;
+FROM events GROUP BY visitorid
+ORDER BY total_events DESC LIMIT 10;
 
 /* 15. TRANSACTIONS BY HOUR */
-SELECT
-    HOUR(FROM_UNIXTIME(timestamp/1000)) AS hour_of_day,
+SELECT HOUR(FROM_UNIXTIME(timestamp/1000)) AS hour_of_day,
     COUNT(*) AS transactions
-FROM events
-WHERE event = 'transaction'
-GROUP BY hour_of_day
-ORDER BY hour_of_day;
+FROM events WHERE event = 'transaction'
+GROUP BY hour_of_day ORDER BY hour_of_day;
 
 /* 16. CART EVENTS BY HOUR */
-SELECT
-    HOUR(FROM_UNIXTIME(timestamp/1000)) AS hour_of_day,
+SELECT HOUR(FROM_UNIXTIME(timestamp/1000)) AS hour_of_day,
     COUNT(*) AS cart_events
-FROM events
-WHERE event = 'addtocart'
-GROUP BY hour_of_day
-ORDER BY hour_of_day;
+FROM events WHERE event = 'addtocart'
+GROUP BY hour_of_day ORDER BY hour_of_day;
 
 /* 17. VIEW EVENTS BY HOUR */
-SELECT
-    HOUR(FROM_UNIXTIME(timestamp/1000)) AS hour_of_day,
+SELECT HOUR(FROM_UNIXTIME(timestamp/1000)) AS hour_of_day,
     COUNT(*) AS view_events
-FROM events
-WHERE event = 'view'
-GROUP BY hour_of_day
-ORDER BY hour_of_day;
+FROM events WHERE event = 'view'
+GROUP BY hour_of_day ORDER BY hour_of_day;
 
 /* 18. VISITOR ACTIVITY RANKING — Window Function */
-SELECT
-    visitorid,
+SELECT visitorid,
     COUNT(*) AS total_events,
-    RANK() OVER (
-        ORDER BY COUNT(*) DESC
-    ) AS activity_rank
-FROM events
-GROUP BY visitorid
-LIMIT 10;
+    RANK() OVER (ORDER BY COUNT(*) DESC) AS activity_rank
+FROM events GROUP BY visitorid LIMIT 10;
 
 /* 19. CART ABANDONMENT COUNT — Subquery */
 SELECT COUNT(*) AS abandoned_users
 FROM (
-    SELECT visitorid
-    FROM events
+    SELECT visitorid FROM events
     GROUP BY visitorid
-    HAVING
-        SUM(event = 'addtocart') > 0
-        AND SUM(event = 'transaction') = 0
+    HAVING SUM(event = 'addtocart') > 0
+    AND SUM(event = 'transaction') = 0
 ) AS abandoned_cart_users;
 ```
 
-> Full SQL file with all 19 queries available in `RetailRocket_Funnel_Analysis.sql`
+> Full SQL file available in `RetailRocket_Funnel_Analysis.sql`
 
 ---
 
@@ -361,9 +327,9 @@ RetailRocket-Funnel-Analytics/
 
 **Tools:** Power BI · DAX · MySQL · Power Query
 
-**LinkedIn:** [Add your LinkedIn URL here]
+**LinkedIn:** https://www.linkedin.com/in/suresh-pawar-a2b7bb26b
 
-**GitHub:** [Add your GitHub URL here]
+**GitHub:** https://github.com/Suru7971
 
 ---
 
