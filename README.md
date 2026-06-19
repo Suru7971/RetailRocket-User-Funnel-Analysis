@@ -1,25 +1,37 @@
 # 🛒 RetailRocket User Funnel Analytics Dashboard
+### End-to-End Funnel Analytics Project | SQL · Power BI · DAX · Business Intelligence
 
-> **End-to-End Funnel Analytics Project | SQL | Power BI | DAX | Business Intelligence**
+---
+
+> **Analyzing 2.7 million e-commerce events to uncover funnel drop-off points, cart abandonment patterns, and conversion optimization opportunities through Power BI.**
 
 ---
 
 ## 🎯 Project Overview
 
-Analyzed **2.7 million e-commerce events** from the RetailRocket Recommender System dataset to identify where users drop off across the shopping funnel and provide actionable recommendations to improve conversion rate.
+This project analyzes **2.7 million e-commerce events** from the [RetailRocket Recommender System Dataset](https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset) — a real-world behavioral dataset covering 1.4M+ unique visitors across the online shopping journey.
+
+The goal was to build a production-style funnel analytics dashboard that answers real business questions:
+
+- Where are users dropping off in the shopping funnel?
+- What percentage of cart users actually complete a purchase?
+- When is user activity at its peak, and what does that mean for promotions?
+- Which products drive the most purchases?
+
+---
 
 ## 🚀 Why This Project Matters
 
 This project demonstrates my ability to:
 
-- Analyze large-scale behavioral datasets (2.7M+ events)
-- Build KPI-driven Power BI dashboards
-- Write SQL queries for funnel and conversion analysis
-- Develop DAX measures for business metrics
-- Identify customer drop-off points and conversion bottlenecks
-- Translate user behavior into actionable business recommendations
+* Analyze large-scale behavioral datasets (2.7M+ events)
+* Build KPI-driven Power BI dashboards
+* Write SQL queries for funnel and conversion analysis
+* Develop DAX measures for business metrics
+* Identify customer drop-off points and conversion bottlenecks
+* Translate user behavior into actionable business recommendations
 
-This project covers the complete analytics lifecycle from data extraction and transformation to dashboard development and business decision-making.
+This project covers the complete analytics lifecycle — from data extraction and transformation to dashboard development and business decision-making.
 
 ## 📌 Executive Summary
 
@@ -39,7 +51,7 @@ These findings provide actionable recommendations to improve conversion rates, r
 - 📈 Conversion Funnel Analysis Dashboard
 - ⚡ 19 SQL Business Queries
 - 📊 Power BI + DAX Analytics Solution
-- 
+
 **Business Question:**
 > "Where are we losing users in the shopping funnel — and what can we do about it?"
 
@@ -51,6 +63,8 @@ View Product  →  Add to Cart  →  Purchase
 ```
 
 **Key Finding: 68.9% of cart users abandon before completing purchase**
+
+> ⚠️ *Note: this dataset covers May 3 – September 18, 2015 (~4.5 months of activity).*
 
 ---
 
@@ -71,54 +85,89 @@ View Product  →  Add to Cart  →  Purchase
 
 ---
 
-## 📈 Dashboard Features
+## 🛠️ Tools & Technologies
 
-### KPI Cards (Top Row)
-| Card | Value | What It Means |
-|------|-------|---------------|
-| Total Visitors | 1M | Total unique users who visited |
-| Cart Users | 38K | Users who added at least one product to cart |
-| Transaction Users | 12K | Users who completed a purchase |
-| View to Cart % | 2.69% | Only 2.69% of visitors add to cart |
-| Total Events | 3M | Total interactions in the dataset |
-| Cart Abandonment % | 68.9% | 7 in 10 cart users never purchase |
-
-### Visualizations
-- **User Conversion Funnel** — View Users 1404K → Cart Users 38K → Transaction Users 12K
-- **Monthly Visitor Trend** — May to September 2015 with peak in July (0.38M) and drop in September (0.17M)
-- **Top Purchased Product IDs** — Top 10 items by purchase count (Item 461686 leads)
-- **Activity by Hour** — User activity peaks between hours 18-23 (6 PM to 10 PM)
-- **Key Insights Panel** — Written business analysis with 5 actionable findings
-- **Interactive Slicers** — Filter by Time of Day and Month Name
+| Tool | Purpose |
+|------|---------|
+| **Power BI Desktop** | Dashboard building and visualization |
+| **DAX** | 9 custom measures for KPIs and conversion metrics |
+| **SQL (MySQL)** | 19 queries for funnel and behavioral analysis |
+| **Power Query** | Timestamp conversion and data cleaning |
 
 ---
 
-## 🔍 Key Business Insights
+## 📁 Project Structure
 
-- **2.69%** of visitors add products to cart — 97% drop off at first stage
-- **Only 0.83%** of visitors complete a purchase
-- **68.9%** cart abandonment rate — 7 in 10 cart users never buy
-- **Cart to purchase conversion is 31.58%** — strong checkout intent once reached
-- **Visitor activity peaks between 6 PM and 10 PM** — best time for promotions
-- **July is the peak month** with 0.38M visitors
-- **September shows sharp drop** to 0.17M — needs investigation
-- **Item 461686** is the top purchased product
-- 
+```
+RetailRocket-User-Funnel-Analysis/
+ ┣ 📄 RetailRocket_Funnel_Analysis.sql   ← 19 SQL queries
+ ┣ 🖼  Dashboard_Screenshot.png           ← Dashboard preview
+ ┗ 📄 README.md                          ← This file
+
+📊 Dashboard .pbix → Google Drive (link above)
+📦 Dataset        → Kaggle (link above)
+```
+
+---
+
+## 📈 Dashboard Features
+
+| Visual | Type | What it shows |
+|--------|------|---------------|
+| Total Visitors | KPI Card | 1M — total unique users who visited |
+| Cart Users | KPI Card | 38K — users who added at least one product to cart |
+| Transaction Users | KPI Card | 12K — users who completed a purchase |
+| View to Cart % | KPI Card | 2.69% — only 2.69% of visitors add to cart |
+| Total Events | KPI Card | 3M — total interactions in the dataset |
+| Cart Abandonment % | KPI Card | 68.9% — 7 in 10 cart users never purchase |
+| User Conversion Funnel | Funnel Chart | View 1404K → Cart 38K → Transaction 12K |
+| Monthly Visitor Trend | Line Chart | May to September 2015, peak in July (0.38M) |
+| Top Purchased Product IDs | Bar Chart | Top 10 items by purchase count (Item 461686 leads) |
+| Activity by Hour | Bar Chart | Peaks between hours 18-23 (6 PM to 10 PM) |
+| Key Insights | Text Panel | 8 data-driven business findings |
+
+**Interactive filters:** Time of Day slicer · Month Name slicer — all visuals update together.
+
+---
+
+## 🔍 Key Insights
+
+These findings were derived from the dashboard analysis — not visible from the raw data alone:
+
+1. **97% Drop-off at the View → Cart Stage**
+
+Only 2.69% of visitors who viewed a product went on to add it to cart, indicating significant friction or lack of motivation at the very top of the funnel.
+
+2. **Cart Abandonment Rate of 68.9%**
+
+Nearly 7 in 10 users who added a product to cart never completed a purchase — the single largest conversion opportunity identified in this analysis.
+
+3. **Strong Checkout Intent Once Reached**
+
+Cart-to-purchase conversion stands at 31.58%, suggesting that once a user reaches checkout, intent to buy is relatively strong — the real problem is earlier in the funnel.
+
+4. **Clear Evening Activity Peak**
+
+Visitor activity consistently peaks between 6 PM and 10 PM, with July recording the highest monthly traffic (0.38M visitors) before a sharp drop to 0.17M in September.
+
+---
+
 ## 🎯 Skills Demonstrated
 
-- Funnel Analytics
-- Conversion Rate Analysis
-- Cart Abandonment Analysis
-- Product Analytics
-- User Behavior Analysis
-- Business Intelligence
-- KPI Development
-- SQL Data Analysis
-- DAX Calculations
-- Data Visualization
-- Dashboard Storytelling
-- Stakeholder Reporting
-- Business Recommendation Development
+* Funnel Analytics
+* Conversion Rate Analysis
+* Cart Abandonment Analysis
+* Product Analytics
+* User Behavior Analysis
+* Business Intelligence
+* KPI Development
+* SQL Data Analysis
+* DAX Calculations
+* Data Visualization
+* Dashboard Storytelling
+* Stakeholder Reporting
+* Business Recommendation Development
+
 ---
 
 ## 💡 Business Recommendations
@@ -190,6 +239,19 @@ RETURN DIVIDE(CartUsers - Buyers, CartUsers)
 -- Scale metric
 Total Events = COUNT(events[event])
 ```
+
+---
+
+## 🗄️ SQL Concepts Used
+
+- `JOIN`-free single-table aggregation across views, carts, and transactions
+- `GROUP BY` with aggregate functions (`COUNT`, `DISTINCT`)
+- `HAVING` clauses for filtered aggregations (cart abandonment logic)
+- `CASE WHEN` for conditional conversion-rate calculations
+- Subqueries for multi-step aggregation (abandonment count)
+- `RANK()` window function for visitor activity ranking
+- `FROM_UNIXTIME()` for timestamp conversion and time-based grouping
+- Top-N filtering for product and visitor analysis
 
 ---
 
@@ -311,58 +373,18 @@ FROM (
 
 ---
 
-## 🛠️ Tools Used
+## 📈 Dataset Information
 
-| Tool | Purpose |
-|------|---------|
-| Power BI Desktop | Dashboard building and visualization |
-| DAX | 8 custom measures for KPIs and conversion metrics |
-| MySQL | 19 SQL queries for funnel and behavioral analysis |
-| Power Query | Timestamp conversion and data cleaning |
+| Property | Detail |
+|----------|--------|
+| Dataset | RetailRocket Recommender System Dataset |
+| Source | [Kaggle](https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset) |
+| Time Period | May 3 – September 18, 2015 |
+| Total Events | 2,756,101 |
+| Unique Visitors | 1,407,580 |
+| Event Types | view, addtocart, transaction |
 
----
-
-## 📦 Dataset Information
-
-**Source:** RetailRocket Recommender System Dataset — Kaggle
-
-**Link:** https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset
-
-> ⚠️ Dataset not included in repo — download from Kaggle link above (65MB+)
-
-| Property | Value |
-|----------|-------|
-| Total events | 2,756,101 |
-| Unique visitors | 1,407,580 |
-| Date range | May 3 – September 18, 2015 |
-| Event types | view, addtocart, transaction |
-
----
-
-## 📁 Repository Structure
-
-```
-RetailRocket-Funnel-Analytics/
- ┣ 📄 RetailRocket_Funnel_Analysis.sql   ← 19 SQL queries
- ┣ 🖼  Dashboard_Screenshot.png           ← Dashboard preview
- ┗ 📄 README.md                          ← This file
-
-📊 Dashboard .pbix → Google Drive (link above)
-📦 Dataset        → Kaggle (link above)
-```
-
----
-
-## 🎓 Skills Demonstrated
-
-- ✅ E-commerce funnel analytics
-- ✅ Conversion rate analysis
-- ✅ Cart abandonment analysis
-- ✅ DAX measure writing in Power BI
-- ✅ SQL aggregations, subqueries and window functions
-- ✅ Interactive dashboard development with slicers
-- ✅ Business recommendations from data
-- ✅ Data storytelling and insight generation
+> ⚠️ Dataset not included in repo — download from the Kaggle link above (65MB+)
 
 ---
 
@@ -371,12 +393,13 @@ RetailRocket-Funnel-Analytics/
 This project demonstrates end-to-end Product Analytics and Business Intelligence capabilities, including SQL-based funnel analysis, KPI development, Power BI dashboard creation, DAX calculations, and business recommendation generation.
 
 **Core Technologies:**
-
 `Power BI` `SQL` `DAX` `MySQL` `Power Query`
 
 **Analytics Areas:**
+`Funnel Analytics` `Conversion Analysis` `Cart Abandonment Analysis` `User Behavior Analytics`
+`Product Analytics` `Business Intelligence` `Dashboard Storytelling`
 
-`Funnel Analytics` `Conversion Analysis` `Cart Abandonment Analysis` `User Behavior Analytics` `Product Analytics` `Business Intelligence` `Dashboard Storytelling`
+---
 
 ## 📬 Connect With Me
 
@@ -391,4 +414,4 @@ surupawar7971@gmail.com
 
 ---
 
-> ⭐ If you found this project helpful, feel free to star the repository!
+> ⭐ If you found this project useful, feel free to star the repository!
