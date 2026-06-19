@@ -325,7 +325,7 @@ RetailRocket-Funnel-Analytics/
 
 **Role:** Data Analyst | Business Analyst | Product Analyst
 
-**Tools:** Power BI · DAX · MySQL · Power Query
+**Tools:** SQL · Power BI · DAX · MySQL · Power Query
 
 **LinkedIn:** https://www.linkedin.com/in/suresh-pawar-a2b7bb26b
 
