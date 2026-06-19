@@ -1,12 +1,25 @@
 # 🛒 RetailRocket User Funnel Analytics Dashboard
 
-> **Power BI · DAX · MySQL · User Behavior Analytics**
+> **End-to-End Funnel Analytics Project | SQL | Power BI | DAX | Business Intelligence**
 
 ---
 
 ## 🎯 Project Overview
 
 Analyzed **2.7 million e-commerce events** from the RetailRocket Recommender System dataset to identify where users drop off across the shopping funnel and provide actionable recommendations to improve conversion rate.
+
+## 🚀 Why This Project Matters
+
+This project demonstrates my ability to:
+
+- Analyze large-scale datasets (2.7M+ records)
+- Write SQL queries for business analysis
+- Build KPI-driven Power BI dashboards
+- Create DAX measures for conversion tracking
+- Generate business recommendations from data
+- Communicate insights to stakeholders
+
+This is an end-to-end analytics project covering data extraction, analysis, visualization, and business decision-making.
 
 **Business Question:**
 > "Where are we losing users in the shopping funnel — and what can we do about it?"
